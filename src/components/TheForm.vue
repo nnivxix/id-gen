@@ -19,7 +19,7 @@ const nanoid = customAlphabet('12345ABCDEFGHIJKLMN', 5);
 const date = new Date();
 const dateGenerated = computed(() => `${date.getHours()}${date.getMinutes()}${date.getSeconds()}`)
 const generateCode = () => {
-  !codeInit.value ? codeGenerated.value = '':  codeGenerated.value = `${codeInit.value.toLocaleUpperCase()}-${nanoid()}-${dateGenerated.value}`
+  !codeInit.value ? codeGenerated.value = '':  codeGenerated.value = `${codeInit.value.toLocaleUpperCase().trim().split(' ').join('')}-${nanoid()}-${dateGenerated.value}`
 }
 </script>
 
