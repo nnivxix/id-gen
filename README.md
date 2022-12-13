@@ -4,6 +4,6 @@
 
 - [ ] Responsive
 - [ ] Tested (`vitest`)
-- [ ] Tooltips Response
+- [x] Tooltips Response
 - [ ] PWA
-- [ ] Icon Copy
+- [x] Icon Copy

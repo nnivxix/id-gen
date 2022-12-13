@@ -1,6 +1,6 @@
 <template>
   <div class="theform">
-    <form class="form" @click.prevent="generateCode">
+    <form class="form" @submit.prevent="generateCode">
       <input class="codeInit" type="text"
         placeholder="OVO" v-model.lazy="codeInit" name="code_init" id="code_init">
       <button>Generate Id</button>
