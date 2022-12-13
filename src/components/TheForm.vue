@@ -14,13 +14,13 @@ import { computed } from 'vue';
 import { customAlphabet } from 'nanoid'
 import {codeGenerated, codeInit} from '../compossable/CodeGenerated'
 
+
 const nanoid = customAlphabet('12345ABCDEFGHIJKLMN', 5);
 const date = new Date();
 const dateGenerated = computed(() => `${date.getHours()}${date.getMinutes()}${date.getSeconds()}`)
 const generateCode = () => {
-  !codeInit.value ? codeGenerated.value = '':  codeGenerated.value = `${codeInit.value.toLocaleUpperCase().trim().split(' ').join('')}-${nanoid()}-${dateGenerated.value}---${setInterval(date.getSeconds(), 1000)}`
+  !codeInit.value ? codeGenerated.value = '':  codeGenerated.value = `${codeInit.value.toLocaleUpperCase().trim().split(' ').join('')}-${nanoid()}-${dateGenerated.value}`
 }
-console.log(setInterval(date.getSeconds(), 1000));
 </script>
 
 <style scoped>
