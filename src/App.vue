@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { usePopperjs } from "vue-use-popperjs";
 import TheForm from './components/TheForm.vue';
 import { codeGenerated } from './compossable/CodeGenerated';
@@ -15,6 +15,14 @@ usePopperjs(btn, tooltip, {
   trigger: 'click-to-toggle',
   placement: 'bottom'
 })
+const loadFromStorage = computed(() => {
+  if (codeGenerated.value === '') {
+    return codeGenerated.value = localStorage.getItem('id-generated')
+  } else {
+    return codeGenerated.value
+  }
+})
+
 </script>
 
 <template>
@@ -25,7 +33,7 @@ usePopperjs(btn, tooltip, {
     <p id="btn-copy" ref="btn"
     :style="!codeGenerated ? 'display: none' : 'display: block;'" 
     @click="copyText()" class="result">
-      {{ codeGenerated }}
+      {{ loadFromStorage }}
       <span id="tooltip" ref="tooltip" >
         <div id="arrow" data-popper-arrow></div>
         Copied

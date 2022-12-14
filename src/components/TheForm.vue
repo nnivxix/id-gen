@@ -10,16 +10,34 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { customAlphabet } from 'nanoid'
 import {codeGenerated, codeInit} from '../compossable/CodeGenerated'
 
 
 const nanoid = customAlphabet('12345ABCDEFGHIJKLMN', 5);
 const date = new Date();
-const dateGenerated = computed(() => `${date.getHours()}${date.getMinutes()}${date.getSeconds()}`)
-const generateCode = () => {
-  !codeInit.value ? codeGenerated.value = '':  codeGenerated.value = `${codeInit.value.toLocaleUpperCase().trim().split(' ').join('')}-${nanoid()}-${dateGenerated.value}`
+const second = ref(1);
+const Ticksecond = () => {
+  second.value += date.getSeconds()
+  if (second.value > 60 ) {
+    return second.value = 0
+  }
+  return;
+  
+} 
+
+setInterval(Ticksecond, 1000)
+
+const dateGenerated = computed(() => `${date.getHours()}${date.getMinutes()}`)
+const generateCode = async () => {
+  if (!codeInit.value){
+    codeGenerated.value = ''
+  } else {
+    codeGenerated.value = `${codeInit.value.toLocaleUpperCase().trim().split(' ').join('')}-${nanoid()}-${dateGenerated.value}${second.value}`
+    localStorage.setItem('id-generated', codeGenerated.value)
+
+  }
 }
 </script>
 
