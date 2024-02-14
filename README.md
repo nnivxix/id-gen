@@ -6,10 +6,6 @@
 
 *Id Genetator* merupakan aplikasi untuk men-generate kode secara acak dengan diberi inisial yang dimasukan oleh pengguna. Aplikasi ini dibuat karena pengembang kesulitan ketika membuat kode transaksi saat bekerja dengan hal akuntasi. Alih-alih membuat secara manual pengembang lebih membuat secara acak supaya terilhat profesional.
 
-## Todo
+## Shot
 
-- [ ] Responsive
-- [ ] Tested (`vitest`)
-- [x] Tooltips Response
-- [x] PWA
-- [x] Icon Copy
+![ID Generator Shoot 1](/public/shoot.png)
