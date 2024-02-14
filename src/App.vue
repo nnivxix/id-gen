@@ -1,24 +1,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { format } from "date-fns";
-import { usePopperjs } from "vue-use-popperjs";
 import TheForm from "./components/TheForm.vue";
-import { useCodeGenerator } from "./composables/useCodeGenerator";
+import TheResult from "./components/TheResult.vue";
 
-const { generatedCode, generatedId } = useCodeGenerator();
-const btn = ref();
-const tooltip = ref();
 const lastUpated = ref(null);
 const version = import.meta.env.VITE_VERSION;
-
-const copyText = async () => {
-  navigator.clipboard.writeText(generatedCode.value);
-};
-
-usePopperjs(btn, tooltip, {
-  trigger: "click-to-toggle",
-  placement: "bottom",
-});
 
 onMounted(async () => {
   const response = await fetch(import.meta.env.VITE_GITHUB_API_REPO);
@@ -33,19 +20,7 @@ onMounted(async () => {
     <h1 class="heading">ID Generator</h1>
     <p>Useful when you need to create id transaction</p>
     <TheForm />
-    <p
-      id="btn-copy"
-      ref="btn"
-      :style="!generatedCode ? 'display: none' : 'display: block;'"
-      @click="copyText()"
-      class="result"
-    >
-      {{ generatedId }}
-      <span id="tooltip" ref="tooltip">
-        <div id="arrow" data-popper-arrow></div>
-        Copied
-      </span>
-    </p>
+    <TheResult />
   </main>
   <footer>
     <p>
@@ -72,15 +47,6 @@ onMounted(async () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.result {
-  padding: 24px;
-  background-color: #83d3ae;
-  font-size: 24px;
-  font-weight: bold;
-  color: #213547;
-  outline: 7px solid #83d3ae;
-  border: 4px dashed #213547;
 }
 
 footer {
