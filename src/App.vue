@@ -1,18 +1,7 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { format } from "date-fns";
 import TheForm from "./components/TheForm.vue";
 import TheResult from "./components/TheResult.vue";
-
-const lastUpated = ref(null);
-const version = import.meta.env.VITE_VERSION;
-
-onMounted(async () => {
-  const response = await fetch(import.meta.env.VITE_GITHUB_API_REPO);
-  const json = await response.json();
-
-  lastUpated.value = format(new Date(json?.updated_at), "MM/dd/yyyy");
-});
+import TheFooter from "./components/TheFooter.vue";
 </script>
 
 <template>
@@ -22,21 +11,7 @@ onMounted(async () => {
     <TheForm />
     <TheResult />
   </main>
-  <footer>
-    <p>
-      Created by
-      <a href="https://twitter.com/nnivxix" target="_blank">Hanasa</a>
-    </p>
-
-    <p>
-      Last Updated:
-      {{ format(new Date(lastUpated), "MM/dd/yyyy") }}
-    </p>
-    <p>
-      Version:
-      {{ version }}
-    </p>
-  </footer>
+  <TheFooter />
 </template>
 
 <style>
@@ -47,23 +22,5 @@ onMounted(async () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.vue-use-popperjs-none {
-  display: none;
-}
-#tooltip {
-  background-color: #333;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 13px;
 }
 </style>

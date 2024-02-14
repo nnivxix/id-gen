@@ -41,4 +41,15 @@ usePopperjs(btn, tooltip, {
   outline: 7px solid #83d3ae;
   border: 4px dashed #213547;
 }
+
+.vue-use-popperjs-none {
+  display: none;
+}
+#tooltip {
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+}
 </style>
