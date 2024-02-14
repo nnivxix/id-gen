@@ -1,9 +1,7 @@
 <script setup>
 import { useCodeGenerator } from "../composables/useCodeGenerator";
 
-const { codeInit, Ticksecond, generateCode } = useCodeGenerator();
-
-setInterval(Ticksecond, 1000);
+const { codeInit, generateCode } = useCodeGenerator();
 </script>
 <template>
   <div class="theform">
@@ -18,7 +16,6 @@ setInterval(Ticksecond, 1000);
       />
       <button>Generate Id</button>
     </form>
-    <!-- <span style="text-align: center;">OBO-LDCGC-235245</span> -->
   </div>
 </template>
 

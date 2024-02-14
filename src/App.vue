@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { usePopperjs } from "vue-use-popperjs";
 import TheForm from "./components/TheForm.vue";
 import { useCodeGenerator } from "./composables/useCodeGenerator";
