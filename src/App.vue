@@ -4,10 +4,9 @@ import { usePopperjs } from "vue-use-popperjs";
 import TheForm from './components/TheForm.vue';
 import { codeGenerated } from './compossable/CodeGenerated';
 
-const copyText = () => {
-  navigator.clipboard.writeText(codeGenerated.value)
-  .then(() =>  'ok')
-  .catch(e => console.error(e))
+// function copy text 
+const copyText = async () => {
+  navigator.clipboard.writeText(codeGenerated.value);
 }
 const btn = ref();
 const tooltip = ref();
@@ -15,6 +14,8 @@ usePopperjs(btn, tooltip, {
   trigger: 'click-to-toggle',
   placement: 'bottom'
 })
+
+// make it compossable
 const loadFromStorage = computed(() => {
   if (codeGenerated.value === '') {
     return codeGenerated.value = localStorage.getItem('id-generated')

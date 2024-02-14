@@ -17,6 +17,8 @@ import {codeGenerated, codeInit} from '../compossable/CodeGenerated'
 
 const nanoid = customAlphabet('12345ABCDEFGHIJKLMN', 5);
 const date = new Date();
+
+// make it composable
 const second = ref(1);
 const Ticksecond = () => {
   second.value += date.getSeconds()
