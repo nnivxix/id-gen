@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { format } from "date-fns";
 import { usePopperjs } from "vue-use-popperjs";
 import TheForm from "./components/TheForm.vue";
 import { useCodeGenerator } from "./composables/useCodeGenerator";
@@ -8,6 +9,7 @@ const { generatedCode, generatedId } = useCodeGenerator();
 
 const btn = ref();
 const tooltip = ref();
+const lastUpated = ref(null);
 
 const copyText = async () => {
   navigator.clipboard.writeText(generatedCode.value);
@@ -16,6 +18,13 @@ const copyText = async () => {
 usePopperjs(btn, tooltip, {
   trigger: "click-to-toggle",
   placement: "bottom",
+});
+
+onMounted(async () => {
+  const response = await fetch("https://api.github.com/repos/nnivxix/id-gen");
+  const json = await response.json();
+
+  lastUpated.value = format(new Date(json?.updated_at), "MM/dd/yyyy");
 });
 </script>
 
@@ -43,13 +52,18 @@ usePopperjs(btn, tooltip, {
       Created by
       <a href="https://twitter.com/nnivxix" target="_blank">Hanasa</a>
     </p>
+
+    <p>
+      Last Updated:
+      {{ format(new Date(lastUpated), "MM/dd/yyyy") }}
+    </p>
   </footer>
 </template>
 
 <style>
 .container {
   width: 100%;
-  height: 90vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,8 +81,9 @@ usePopperjs(btn, tooltip, {
 
 footer {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
 }
 
 .vue-use-popperjs-none {
