@@ -1,8 +1,7 @@
 <script setup>
 import { useCodeGenerator } from "../composables/useCodeGenerator";
 
-const { codeInit, generatedCode, Ticksecond, generateCode } =
-  useCodeGenerator();
+const { codeInit, Ticksecond, generateCode } = useCodeGenerator();
 
 setInterval(Ticksecond, 1000);
 </script>

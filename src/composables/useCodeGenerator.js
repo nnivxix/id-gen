@@ -4,6 +4,8 @@ import { customAlphabet } from "nanoid";
 const nanoid = customAlphabet("12345ABCDEFGHIJKLMN", 5);
 const date = new Date();
 const second = ref(1);
+const minute = ref(1);
+const hour = ref(1);
 const codeInit = ref("");
 const generatedCode = ref("");
 export function useCodeGenerator() {
@@ -19,13 +21,33 @@ export function useCodeGenerator() {
 
   const Ticksecond = () => {
     second.value += date.getSeconds();
+    minute.value = date.getMinutes();
+    hour.value = date.getHours();
     if (second.value > 60) {
-      return (second.value = 0);
+      second.value = 0;
+      // minute.value += 1;
+      hour.value += 1;
     }
+    // console.log({
+    //   getS: date.getSeconds(),
+    //   getM: date.getMinutes(),
+    //   getH: date.getHours(),
+    //   second: second.value,
+    //   minute: minute.value,
+    //   hour: hour.value,
+    // });
     return;
   };
 
   const generateCode = () => {
+    console.log({
+      getS: date.getSeconds(),
+      getM: date.getMinutes(),
+      getH: date.getHours(),
+      second: second.value,
+      minute: minute.value,
+      hour: hour.value,
+    });
     if (!codeInit.value) {
       generatedCode.value = "";
     } else {
@@ -33,7 +55,7 @@ export function useCodeGenerator() {
         .toLocaleUpperCase()
         .trim()
         .split(" ")
-        .join("")}-${nanoid()}-${generatedDate.value}${second.value}`;
+        .join("")}-${nanoid()}-${hour.value}${minute.value}${second.value}`;
       localStorage.setItem("id-generated", generatedCode.value);
     }
   };
