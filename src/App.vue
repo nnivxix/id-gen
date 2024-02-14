@@ -6,10 +6,10 @@ import TheForm from "./components/TheForm.vue";
 import { useCodeGenerator } from "./composables/useCodeGenerator";
 
 const { generatedCode, generatedId } = useCodeGenerator();
-
 const btn = ref();
 const tooltip = ref();
 const lastUpated = ref(null);
+const version = import.meta.env.VITE_VERSION;
 
 const copyText = async () => {
   navigator.clipboard.writeText(generatedCode.value);
@@ -21,7 +21,7 @@ usePopperjs(btn, tooltip, {
 });
 
 onMounted(async () => {
-  const response = await fetch("https://api.github.com/repos/nnivxix/id-gen");
+  const response = await fetch(import.meta.env.VITE_GITHUB_API_REPO);
   const json = await response.json();
 
   lastUpated.value = format(new Date(json?.updated_at), "MM/dd/yyyy");
@@ -57,13 +57,17 @@ onMounted(async () => {
       Last Updated:
       {{ format(new Date(lastUpated), "MM/dd/yyyy") }}
     </p>
+    <p>
+      Version:
+      {{ version }}
+    </p>
   </footer>
 </template>
 
 <style>
 .container {
   width: 100%;
-  min-height: 85vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

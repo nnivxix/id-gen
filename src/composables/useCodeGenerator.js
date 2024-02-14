@@ -25,7 +25,7 @@ export function useCodeGenerator() {
       .split(" ")
       .join(
         ""
-      )}-${nanoid()}-${date.getHours()}${date.getHours()}${date.getSeconds()}`;
+      )}-${nanoid()}-${date.getHours()}${date.getMinutes()}${date.getSeconds()}`;
 
     localStorage.setItem("id-generated", generatedCode.value);
   };
