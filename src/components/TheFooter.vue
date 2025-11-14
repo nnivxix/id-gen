@@ -1,15 +1,7 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { format } from "date-fns";
-const lastUpated = ref(null);
-const version = import.meta.env.VITE_VERSION;
-
-onMounted(async () => {
-  const response = await fetch(import.meta.env.VITE_GITHUB_API_REPO);
-  const json = await response.json();
-
-  lastUpated.value = format(new Date(json?.updated_at), "MM/dd/yyyy");
-});
+import { ref } from "vue";
+const lastUpated = ref("11/14/2025");
+const VERSION = "0.0.3";
 </script>
 <template>
   <footer>
@@ -20,11 +12,11 @@ onMounted(async () => {
 
     <p>
       Last Updated:
-      {{ format(new Date(lastUpated), "MM/dd/yyyy") }}
+      {{ lastUpated }}
     </p>
     <p>
       Version:
-      {{ version }}
+      {{ VERSION }}
     </p>
   </footer>
 </template>
