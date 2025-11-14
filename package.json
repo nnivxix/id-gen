@@ -2,7 +2,7 @@
   "name": "id-gen",
   "description": "Useful when you need to create id transaction",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,14 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "date-fns": "^3.3.1",
-    "nanoid": "^4.0.0",
-    "vue": "^3.2.45",
-    "vue-use-popperjs": "^2.3.4"
+    "date-fns": "^3.6.0",
+    "nanoid": "^4.0.2",
+    "vue": "^3.5.24",
+    "vue-use-popperjs": "^2.3.8"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
-    "vite": "^4.0.0",
-    "vite-plugin-pwa": "^0.14.0"
+    "@vitejs/plugin-vue": "^4.6.2",
+    "vite": "^4.5.14",
+    "vite-plugin-pwa": "^0.14.7"
   }
 }
